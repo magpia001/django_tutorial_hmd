@@ -24,4 +24,5 @@ urlpatterns = [
     path('', views.home, name="home"),
     # community 앱의 path를 포함시킴
     path('community/', include('community.urls')),
+    path('dashboard/', include('dashboard.urls')),
    ]
