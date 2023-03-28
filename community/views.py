@@ -20,7 +20,10 @@ def write(request):
         if form.is_valid():
             # form 데이터 저장
             form.save()
-            return redirect('/community/write')
+            # path : /community/write
+            # return redirect('/community/write')
+            # '/community/list' path로 response
+            return redirect('/community/list')
     else:
         # 빈 form으로 응답하기
         form = Form()
