@@ -25,4 +25,6 @@ urlpatterns = [
     path('write/', views.write, name="wirte"),
     # list/
     path('list/', views.list, name="list"),
+    # view_detail/4
+    path('view_detail/<int:num>/', views.viewDetail, name="view_detail"),
 ]

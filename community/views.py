@@ -27,3 +27,10 @@ def list(request):
     article_list = Article.objects.all()
     return render(request, 'list.html', {"article_list":article_list})
 
+# list의 detail : 한 항목의 세부내용을 읽어서 응답하기
+# path('view_detail/<int:num>/', views.viewDetail, name="view_detail"),
+# num 값을 키워드로 넣어주기, urls.py의 num변수는 함수의 keyword 변수와 동일해야함
+def viewDetail(request, num=1):
+    #  한 항목의 세부내용을 읽어오기
+    article_deatil = Article.objects.get(id=num)
+    return render(request, 'view_detail.html', {"article":article_deatil})
