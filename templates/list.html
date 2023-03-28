@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p>이름 | 제목 | 작성 날짜</p>
+  <ul>
+  <!-- {{ article_list }} -->
+  {% for article in  article_list %}
+    <li>{{ article.name }} | {{ article.title }} | {{ article.email }} | {{ article.cdate|date:"Y년 M d일 D" }}</li>
+  {% endfor %}
+  </ul>
+  
+  
+  
+
+</body>
+</html>

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-# from community.views import write
+# from community.views import write, list
 from community import views
 
 urlpatterns = [
@@ -23,4 +23,6 @@ urlpatterns = [
 
     # write/ 요청이 들어오면, views.write()함수 실행
     path('write/', views.write, name="wirte"),
+    # list/
+    path('list/', views.list, name="list"),
 ]
