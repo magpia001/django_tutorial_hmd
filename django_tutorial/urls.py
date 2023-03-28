@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 # from community.views import write, list
 from community import views
 
@@ -22,10 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # 홈 path '/' : 오류남
     path('', views.home, name="home"),
-    # write/ 요청이 들어오면, views.write()함수 실행
-    path('write/', views.write, name="wirte"),
-    # list/
-    path('list/', views.list, name="list"),
-    # view_detail/4
-    path('view_detail/<int:num>/', views.viewDetail, name="view_detail"),
-]
+    # community 앱의 path를 포함시킴
+    path('community/', include('community.urls')),
+   ]
