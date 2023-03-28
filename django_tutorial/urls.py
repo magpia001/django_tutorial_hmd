@@ -20,7 +20,8 @@ from community import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
+    # 홈 path '/' : 오류남
+    path('', views.home, name="home"),
     # write/ 요청이 들어오면, views.write()함수 실행
     path('write/', views.write, name="wirte"),
     # list/

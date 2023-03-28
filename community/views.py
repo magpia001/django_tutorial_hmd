@@ -1,6 +1,14 @@
 from django.shortcuts import render, redirect
 from community.forms import Form
 from .models import Article
+
+# http://127.0.0.1:8000/
+# 홈 처리 함수
+def home(request):
+    # print(Article.objects.all().order_by('-cdate')[:3])
+    articles = Article.objects.all().order_by('-cdate')[:3]
+    return render(request, 'index.html', {"articles": articles})
+
 # http://127.0.0.1:8000/write/
 def write(request):
     # 입력한 form 데이터를 받아서 DB에 저장
