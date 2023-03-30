@@ -1,20 +1,27 @@
 {% extends "base.html" %}
+{% load static %}
 {% load crispy_forms_tags %}
 <!-- head tag의 타이틀 -->
 {% block title %}대시보드{% endblock %}
 
+<!-- css 영역 -->
+{% block sytle %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
 <!-- 페이지 콘텐츠 영역 -->
 {% block container %}
 <h1>각나의 인구 분포</h1>
-<section class="row">
-  <div class="col"> 
+<p><img src="{% static 'images/pop.png' %}" alt="이미지"></p>
+<section class="row gap-1">
+  <div class="col p-3 bg-success" style="--bs-bg-opacity: .5;"> 
     <h3>가장 인구 많은 나라</h3>
     <div>
       <p>{{ max_pop.country }}</p>
       <p>{{ max_pop.population|floatformat:"0" }}</p>
     </div>
   </div>
-  <div class="col">
+  <div class="col p-3 bg-warning"  style="--bs-bg-opacity: .5;">
     <h3>전체 인구</h3>
     <div>
       <p><span>{{ sum_pop }} </span> 만명 /
@@ -95,7 +102,10 @@
         y: {
           beginAtZero: true
         }
-      }
+      },
+      responsive: true,
+      responsiveAnimationDuration: 1,
+      maintainAspectRatio: true,
     },
   };
 

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,6 +25,7 @@ SECRET_KEY = 'django-insecure-uv^#3@91qyhqx56u1qt_w*uz3m6a1&vfp@8dwywt_op!_3=tgj
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = False
 
 # 장고 프로젝트를 서비스 배포할 때, 서버의 IP주소, 도메인
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
@@ -58,7 +60,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'django_tutorial.urls'
 
-import os
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -128,6 +130,9 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# 튜플로 할당
+STATICFILES_DIRS = (BASE_DIR / 'static',)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
