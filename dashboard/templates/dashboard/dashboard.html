@@ -1,12 +1,109 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <h1>{{ key }}</h1>
-</body>
-</html>
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+<!-- head tag의 타이틀 -->
+{% block title %}대시보드{% endblock %}
+
+<!-- 페이지 콘텐츠 영역 -->
+{% block container %}
+<h1>각나의 인구 분포</h1>
+<section class="row">
+  <div class="col"> 
+    <h3>가장 인구 많은 나라</h3>
+    <div>
+      <p>{{ max_pop.country }}</p>
+      <p>{{ max_pop.population|floatformat:"0" }}</p>
+    </div>
+  </div>
+  <div class="col">
+    <h3>전체 인구</h3>
+    <div>
+      <p><span>{{ sum_pop }} </span> 만명 /
+        <span>{{ cnt_country }} </span>개 나라
+      </p>
+    </div>
+  </div>
+</section>
+<section class="row mt-3 pt-3">
+  <div class="col-4">
+    <div class="border p-3 shadow">
+      <h4>Add Data</h4>
+      <hr>
+      <form action="" method="POST" class="d-grid">
+        {{ form|crispy }}{% csrf_token %}
+        <input type="submit" class="btn btn-success " value="Add">
+      </form>
+    </div>
+  </div>
+  <div class="col-8">
+    <canvas id="populateChart"></canvas>
+  </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+
+  // documnet에서 chart가 표시되는 곳 지정
+  const ctx = document.getElementById('populateChart');
+
+  // chart data 정의 
+  // views.py에서 넘긴 키 : country_datas
+
+  // const labels = ['1월', '2월', '3월', '4월', '5월', '6월', '7월']
+  const labels = [
+  {% for cd in country_datas %}
+    '{{ cd.country }}', 
+  {% endfor %}
+  ]
+  // const pop_data = [65, 59, 80, 81, 56, 55, 40]
+  const pop_data = [
+  {% for cd in country_datas %}
+    {{ cd.population }},
+  {% endfor %}
+  ]
+  const data = {
+    labels: labels,
+    datasets: [{
+      label: '인구분포',
+      data: pop_data,
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+        'rgba(255, 205, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(201, 203, 207, 0.2)'
+      ],
+      borderColor: [
+        'rgb(255, 99, 132)',
+        'rgb(255, 159, 64)',
+        'rgb(255, 205, 86)',
+        'rgb(75, 192, 192)',
+        'rgb(54, 162, 235)',
+        'rgb(153, 102, 255)',
+        'rgb(201, 203, 207)'
+      ],
+      borderWidth: 1
+    }]
+  };
+
+  // chart 기본 설정
+  const config = {
+    type: 'bar',
+    data: data,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    },
+  };
+
+  // chart 객체 생성
+  // new Chart(documnet의_식별_변수, chart_기본_설정_변수)
+  new Chart(ctx, config)
+</script>
+{% endblock container%}
+
+
+

@@ -8,4 +8,7 @@ class Article(models.Model):
   url = models.URLField()
   email = models.EmailField()
   cdate = models.DateTimeField(auto_now_add=True)
-    
+  
+  # 문자열 format : title, name, cdate
+  def __str__(self):
+    return f"{self.title} : {self.name} : {self.cdate}"

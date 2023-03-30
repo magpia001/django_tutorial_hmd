@@ -1,29 +1,22 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <p>이름 | 제목 | 작성 날짜</p>
-  <ul>
+{% extends "base.html" %}
+<!-- head tag의 타이틀 -->
+{% block title %}글 목록{% endblock %}
+
+<!-- 페이지 콘텐츠 영역 -->
+{% block container %}
+<p>이름 | 제목 | 작성 날짜</p>
+<ul>
   <!-- {{ article_list }} -->
   {% for article in  article_list %}
-    <li>
-      <a href="/community/view_detail/{{ article.id }}/">
-        {{ article.title }} 
-      </a>| 
-      {{ article.name }} | 
-      {{ article.email }} | 
-      {{ article.cdate|date:"Y년 M d일 D" }}
-    </li>
+  <li>
+    <a href="/community/view_detail/{{ article.id }}/">
+      {{ article.title }} 
+    </a>| 
+    {{ article.name }} | 
+    {{ article.email }} | 
+    {{ article.cdate|date:"Y년 M d일 D" }}
+  </li>
   {% endfor %}
-  </ul>
-  
-  
-  
-
-</body>
-</html>
+</ul>
+<a href="/community/write/"><input type="button" value="메모작성하기"></a>
+{% endblock %}

@@ -1,27 +1,23 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <h1>메모 최근 목록</h1>
-  <ul>
-    {% for article in articles %}
-      <li>
-        <a href="/community/view_detail/{{ article.id }}/">
-          {{ article.title }}
-        </a> | 
-        {{ article.name }} | 
-        {{ article.cdate }}
-      </li>
-    {% endfor %}
-  </ul>
-  <a href="/community/write/"><input type="button" value="메모작성하기"></a>
-  <!-- <button>메모작성하기</button> -->
+{% extends "base.html" %}
+<!-- head tag의 타이틀 -->
+{% block title %}코즈랩홈{% endblock %}
 
 
-</body>
-</html>
+{% block container %}
+
+<!-- 페이지 콘텐츠 영역 -->
+<h1>메모 최근 목록</h1>
+<ul>
+  {% for article in articles %}
+    <li>
+      <a href="/community/view_detail/{{ article.id }}/">
+        {{ article.title }}
+      </a> | 
+      {{ article.name }} | 
+      {{ article.cdate }}
+    </li>
+  {% endfor %}
+</ul>
+<a href="/community/write/"><input type="button" value="메모작성하기"></a>
+<!-- <button>메모작성하기</button> -->
+{% endblock %}
