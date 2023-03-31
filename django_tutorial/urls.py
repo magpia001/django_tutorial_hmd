@@ -8,8 +8,10 @@ from . import views as av
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    
     # 홈 path '/' : 오류남
-    path('', views.home, name="home"),
+    path('', av.home, name="home"),
+
     # community 앱의 path를 포함시킴
     path('community/', include('community.urls')),
     path('dashboard/', include('dashboard.urls')),
