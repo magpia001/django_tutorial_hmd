@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     # crispy_forms bootstrap5 버전설정
     "crispy_forms",
     "crispy_bootstrap5",
-
+    # pip install django-widget-tweaks
+    "widget_tweaks",
 ]
 
 MIDDLEWARE = [
@@ -142,3 +143,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # crispy_forms bootstrap5 버전 환경변수
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+# login을 성공한 후의 이동할 곳 : 홈
+LOGIN_REDIRECT_URL = '/'
