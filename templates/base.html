@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -17,7 +18,7 @@
   <!-- naver 영역 -->
   {% include "navbar.html" %}
 
-  <div class="container">
+  <div class="container contents">
     <!-- 각페이지의 콘텐츠  영역 -->
     {% block container %}
     {% endblock %}
@@ -28,3 +29,8 @@
   {% include "footer.html" %}
 </body>
 </html>
+<!-- 
+  html 태그로 js파일 연결
+  static load
+ -->
+ <script src="{% static 'js/main.js' %}"></script>
