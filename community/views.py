@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 
 from community.forms import Form
@@ -28,14 +29,14 @@ from .models import Article
 #         #   return render(request, 'html 템플릿파일', {"키": 값})
 #         return render(request, 'community/write.html', {"form": form})
 
-class WriteFormView(CreateView):
+class WriteFormView(LoginRequiredMixin, CreateView):
     model = Article
     fields = ['name', 'title', 'contents', 'url', 'email']
     template_name = 'community/write.html'
     success_url = reverse_lazy('list')
     
-
     def form_valid(self, form):
+        form.instance.owner = self.request.user
         return super().form_valid(form)
     
 # list : db의 목록을 보여줌
@@ -63,3 +64,7 @@ class ArticleListView(ListView):
 class ArticleViewDetail(DetailView):
     model = Article
     template_name = 'community/view_detail.html'
+
+class ArticleChangeView(ListView):
+    # article wirte 시 owner 추가하기 구현 후 다시 작성
+    pass
