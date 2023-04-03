@@ -7,7 +7,7 @@ from community import views
 from . import views as av
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     
     # 홈 path '/' : 오류남
     # path('', av.home, name="home"),
