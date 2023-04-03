@@ -3,6 +3,12 @@
 {% block title %}{{ article.id }}세부내용{% endblock %}
 
 {% block container %}
+<!-- views.py CBV 방식으로 세부 내용 넘길때
+-->
+<!-- object 또는 article 클래스_이름으로 데이터를 넘김 -->
+<!-- <p>{{ object.id }}</p>
+<p>{{ article.id }}</p> -->
+{{ article }}
 <!-- 페이지 콘텐츠 영역 -->
 <table>
   <tr>
