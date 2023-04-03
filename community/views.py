@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView
+from django.views.generic import CreateView
+from django.views.generic import UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 
@@ -70,3 +72,17 @@ class ArticleChangeView(LoginRequiredMixin, ListView):
     template_name = 'community/change_list.html'
     def get_queryset(self):
         return Article.objects.filter(owner=self.request.user)
+    
+# article update
+class ArticleUpdateView(LoginRequiredMixin, UpdateView):
+    model = Article
+    fields = ['name', 'title', 'contents', 'url', 'email']
+    template_name = 'community/article_update.html'
+    # view_detail, id값 같이 넘기기 <= 세부내용 path name, 찾아보기
+    # change <= 내 글목록 path name
+    success_url = reverse_lazy('change')
+
+class ArticleDeleteView(LoginRequiredMixin, DeleteView):
+    model = Article
+    template_name = 'community/article_delete.html'
+    success_url = reverse_lazy('change')

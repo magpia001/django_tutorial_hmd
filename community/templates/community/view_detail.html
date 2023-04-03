@@ -40,4 +40,8 @@
     <td>{{ article.cdate }}</td>
   </tr>
 </table>
+
+<a href="{% url 'update' article.id %}">글 수정</a>
+<a href="{% url 'delete' article.id %}">글 삭제</a>
+
 {% endblock %}
