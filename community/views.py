@@ -65,6 +65,8 @@ class ArticleViewDetail(DetailView):
     model = Article
     template_name = 'community/view_detail.html'
 
-class ArticleChangeView(ListView):
+class ArticleChangeView(LoginRequiredMixin, ListView):
     # article wirte 시 owner 추가하기 구현 후 다시 작성
-    pass
+    template_name = 'community/change_list.html'
+    def get_queryset(self):
+        return Article.objects.filter(owner=self.request.user)

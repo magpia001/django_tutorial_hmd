@@ -8,7 +8,7 @@
 <!-- 페이지 콘텐츠 영역 -->
 <h1>메모 최근 목록</h1>
 <ul>
-  {% for article in articles %}
+  {% for article in article_list %}
     <li>
       <a href="/community/view_detail/{{ article.id }}/">
         {{ article.title }}

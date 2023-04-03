@@ -12,7 +12,7 @@ urlpatterns = [
     # 홈 path '/' : 오류남
     # path('', av.home, name="home"),
     # CBV 방식 path
-    path('', av.home, name="home"),
+    path('', av.Home.as_view(), name="home"),
 
     # community 앱의 path를 포함시킴
     path('community/', include('community.urls')),
